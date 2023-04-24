@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "json-server": "^0.17.3"
+  }
+}
