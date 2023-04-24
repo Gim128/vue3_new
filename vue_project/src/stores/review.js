@@ -41,8 +41,27 @@ export const useReviewStore = defineStore("reviews", {
       this.editedData = editedData;
     },
 
-    async update
+    async updateReview(review){
+      const response = await fetch(`http://localhost:5000/reviews/${review.id}`, 
+      {
+        method: 'PUT',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(review)
+      }
+      );
+      const updateReview = await response.json();
+      let reviews = this.reviews.map(item => item.id === review.id ? {...item, ...updateReview} : item);
+      this.reviews = reviews
+      this.fetchReviews();
 
+      let editedData = {
+        editable: false,
+        item: null
+      };
+      this.editedData = editedData;
+    },
   },
 
   getters: {
@@ -51,4 +70,22 @@ export const useReviewStore = defineStore("reviews", {
         return acc + cur.rating;
       }, 0) / state.reviews.length; 
 
-      temp = temp.toFixed(1).replace(/[
+      temp = temp.toFixed(1).replace(/[.,]0$/, "");
+      return temp;
+
+    },
+
+    reviewsCount(){
+      return this.reviews.length;
+    },
+
+    reviewsContent(){
+      return this.reviews;
+    },
+    editedContent(){
+      return this.editedData;
+    },
+
+  }
+
+});

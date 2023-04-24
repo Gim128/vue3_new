@@ -4,7 +4,9 @@
             <i class="fa-sharp fa-solid fa-xmark"></i>
         </button>
         <button class="edit">
-            <i class="fa-solid fa-pen-to-square" @click="editReview(item)"></i>
+            <i class="fa-solid fa-pen-to-square" @click="store.editReview(item)"></i>
+
+            <!-- 1:20:25 -->
         </button>
         <div class="num-display">
             {{ item.rating }}
@@ -18,6 +20,9 @@
 <script setup>
     import CardComponent from './CardComponent.vue';
     import { defineProps } from 'vue';
+    import { useReviewStore } from "../stores/review";
+
+    const store = useReviewStore();
 
     defineProps({
         item: {
@@ -26,4 +31,6 @@
     })
 </script>
 
-<style lang=
+<style lang="scss" scoped>
+
+</style>

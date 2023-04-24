@@ -38,4 +38,15 @@ const handleSubmit = () => {
   }else{
     store.updateReview({
       ...newReview,
-      id: store.edite
+      id: store.editedContent.item.id,
+    })
+  }
+}
+
+const setRating = (val) => {
+  rating.value = val;
+  console.log(val);
+};
+</script>
+
+<style scoped></style>
